@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dndstatroller/Character.swift"
-            timestampString = "446715465.927396"
+            timestampString = "446841079.388633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "Character"
             landmarkType = "3">
          </BreakpointContent>

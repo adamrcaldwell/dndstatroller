@@ -23,6 +23,7 @@ class ListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var characterLabel: UILabel!
     
+    @IBOutlet weak var characterLevelAndClassLabel: UILabel!
     
 
 }

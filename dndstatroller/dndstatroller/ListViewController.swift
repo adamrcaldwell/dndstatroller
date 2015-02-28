@@ -70,6 +70,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier("BUILD_CELL", forIndexPath: indexPath) as ListTableViewCell
         var charToDisplay = self.characterList[indexPath.row]
         cell.characterLabel.text = charToDisplay.returnFullName()
+        cell.characterLevelAndClassLabel.text = charToDisplay.returnLevelAndClass()
         return cell
     }
     

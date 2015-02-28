@@ -10,7 +10,7 @@ import UIKit
 
 class CharacterViewController: UIViewController, UINavigationControllerDelegate {
     
-    var selectedChar = Character(firstName: "", lastName: "", strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0)
+    var selectedChar = Character(firstName: "", lastName: "", strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0, characterClass: "", level: 0, hitPoints: 0)
     
     override func viewDidLoad() {
         
@@ -24,6 +24,8 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate 
         self.characterViewINT.text = "Intelligence: " + String(selectedChar.intelligence)
         self.characterViewWIS.text = "Wisdom: " + String(selectedChar.wisdom)
         self.characterViewCHA.text = "Charisma:" + String(selectedChar.charisma)
+        self.characterViewLevelAndClass.text = selectedChar.returnLevelAndClass()
+        self.characterViewHitPoints.text = String(selectedChar.hitPoints) + " HP"
         
     }
 
@@ -39,6 +41,8 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate 
     @IBOutlet weak var characterViewINT: UILabel!
     @IBOutlet weak var characterViewWIS: UILabel!
     @IBOutlet weak var characterViewCHA: UILabel!
+    @IBOutlet weak var characterViewLevelAndClass: UILabel!
+    @IBOutlet weak var characterViewHitPoints: UILabel!
     
 
 

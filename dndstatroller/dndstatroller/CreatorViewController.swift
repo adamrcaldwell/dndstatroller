@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var delegate: updateListDelegate?
 
@@ -26,6 +26,8 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         self.firstNameField.delegate = self
         self.lastNameField.delegate = self
+        classPicker.dataSource = self
+        classPicker.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -44,8 +46,28 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var intelligenceDisplay: UILabel!
     @IBOutlet weak var wisdomDisplay: UILabel!
     @IBOutlet weak var charismaDisplay: UILabel!
+    @IBOutlet weak var hitPointsDisplay: UILabel!
     
-    var newChar = Character(firstName: "", lastName: "", strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0)
+    @IBOutlet weak var classPicker: UIPickerView!
+    
+    let pickerData = ["Fighter", "Barbarian", "Paladin", "Monk", "Cleric", "Druid", "Favored Soul", "Wizard", "Sorcerer", "Warlock", "Bard", "Rogue", "Ranger"]
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return pickerData[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        newChar.characterClass = pickerData[row]
+    }
+    
+    var newChar = Character(firstName: "", lastName: "", strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0, characterClass: "Fighter", level: 1, hitPoints: 0)
     
     @IBAction func rollButtonPressed(sender: AnyObject){
         var thisCharStats = newChar.rollStats()
@@ -63,6 +85,8 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.charismaDisplay.text = String(newChar.charisma)
         newChar.firstName = firstNameField.text
         newChar.lastName = lastNameField.text
+        newChar.hitPoints = newChar.rollHitPoints(newChar.characterClass)
+        self.hitPointsDisplay.text = String(newChar.hitPoints) + " HP"
     }
 
     @IBAction func saveButtonPressed(sender: AnyObject) {
@@ -74,13 +98,6 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
         return true
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "SAVE_AND_SHOW" {
-//            let listViewController = segue.destinationViewController as ListViewController
-//            var charToPass = self.newChar
-//            listViewController.characterList.append(charToPass)
-//        }
-//    }
     
     /*
     // MARK: - Navigation

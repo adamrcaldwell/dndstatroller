@@ -19,8 +19,11 @@ class Character: NSObject, NSCoding {
     var intelligence: Int
     var wisdom: Int
     var charisma: Int
+    var characterClass: String
+    var level: Int
+    var hitPoints: Int
     
-    init(firstName : String, lastName : String, strength : Int, dexterity: Int, constitution : Int, intelligence : Int, wisdom : Int, charisma : Int) {
+    init(firstName : String, lastName : String, strength : Int, dexterity: Int, constitution : Int, intelligence : Int, wisdom : Int, charisma : Int, characterClass: String, level: Int, hitPoints: Int) {
         
         self.firstName = firstName
         self.lastName = lastName
@@ -30,6 +33,9 @@ class Character: NSObject, NSCoding {
         self.intelligence = intelligence
         self.wisdom = wisdom
         self.charisma = charisma
+        self.characterClass = characterClass
+        self.level = level
+        self.hitPoints = hitPoints
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -41,6 +47,9 @@ class Character: NSObject, NSCoding {
         self.intelligence = aDecoder.decodeObjectForKey("intelligence") as Int
         self.wisdom = aDecoder.decodeObjectForKey("wisdom") as Int
         self.charisma = aDecoder.decodeObjectForKey("charisma") as Int
+        self.characterClass = aDecoder.decodeObjectForKey("characterClass") as String
+        self.level = aDecoder.decodeObjectForKey("level") as Int
+        self.hitPoints = aDecoder.decodeObjectForKey("hitPoints") as Int
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -52,11 +61,19 @@ class Character: NSObject, NSCoding {
         aCoder.encodeObject(self.intelligence, forKey: "intelligence")
         aCoder.encodeObject(self.wisdom, forKey: "wisdom")
         aCoder.encodeObject(self.charisma, forKey: "charisma")
+        aCoder.encodeObject(self.characterClass, forKey: "characterClass")
+        aCoder.encodeObject(self.level, forKey: "level")
+        aCoder.encodeObject(self.hitPoints, forKey: "hitPoints")
     }
     
     func returnFullName () -> String {
         var fullName : String = self.firstName + " " + self.lastName
         return fullName
+    }
+    
+    func returnLevelAndClass () -> String {
+        var levelAndClass : String = "Level " + String(self.level) + " " + self.characterClass
+        return levelAndClass
     }
     
     func randomInt(min:Int, max:Int) -> Int {
@@ -86,6 +103,41 @@ class Character: NSObject, NSCoding {
         
         return stats
         
+    }
+    
+    func rollHitPoints (selectedClass: String) -> Int {
+        var hitPoints : Int
+        switch selectedClass {
+            case "Fighter":
+                hitPoints = randomInt(1, max: 10)
+            case "Barbarian":
+                hitPoints = randomInt(1, max: 12)
+            case "Paladin":
+                hitPoints = randomInt(1, max: 10)
+            case "Cleric":
+                hitPoints = randomInt(1, max: 8)
+            case "Favored Soul":
+                hitPoints = randomInt(1, max: 8)
+            case "Druid":
+                hitPoints = randomInt(1, max: 8)
+            case "Wizard":
+                hitPoints = randomInt(1, max: 4)
+            case "Sorcerer":
+                hitPoints = randomInt(1, max: 4)
+            case "Warlock":
+                hitPoints = randomInt(1, max: 6)
+            case "Bard":
+                hitPoints = randomInt(1, max: 6)
+            case "Rogue":
+                hitPoints = randomInt(1, max: 6)
+            case "Ranger":
+                hitPoints = randomInt(1, max: 8)
+            case "Monk":
+                hitPoints = randomInt(1, max: 8)
+        default:
+            hitPoints = 0
+        }
+        return hitPoints
     }
         
 }
