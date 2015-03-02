@@ -10,7 +10,12 @@ import UIKit
 
 class CharacterViewController: UIViewController, UINavigationControllerDelegate {
     
+    // Variables - placeholder character
+    
     var selectedChar = Character(firstName: "", lastName: "", strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0, characterClass: "", level: 0, hitPoints: 0)
+    
+    
+    // Life cycle
     
     override func viewDidLoad() {
         

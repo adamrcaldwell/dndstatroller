@@ -10,6 +10,8 @@ import UIKit
 
 class ListTableViewCell: UITableViewCell {
 
+    // Life cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,6 +22,8 @@ class ListTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    // Outlets
     
     @IBOutlet weak var characterLabel: UILabel!
     

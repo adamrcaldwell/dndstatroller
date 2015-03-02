@@ -10,12 +10,17 @@ import UIKit
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, updateListDelegate {
 
+    // Variables
+    
     var characterList = [Character]()
+    
+    // Delegation
     
     func updateList(value: Character) {
         characterList.append(value)
     }
 
+    // Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +47,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.saveToArchive()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // NSCoding persistence
+    
     func loadFromArchive() -> [Character]? {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         
@@ -55,12 +66,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         NSKeyedArchiver.archiveRootObject(self.characterList, toFile: documentsPath + "/archive")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    
+    // Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // Protocol adherence
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.characterList.count
@@ -73,6 +84,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.characterLevelAndClassLabel.text = charToDisplay.returnLevelAndClass()
         return cell
     }
+    
+    // Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SHOW_CHARACTER" {

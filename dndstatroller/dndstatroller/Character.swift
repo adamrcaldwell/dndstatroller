@@ -11,6 +11,8 @@ import Foundation
 
 class Character: NSObject, NSCoding {
     
+    // Variables and init
+    
     var firstName: String
     var lastName: String
     var strength: Int
@@ -52,6 +54,8 @@ class Character: NSObject, NSCoding {
         self.hitPoints = aDecoder.decodeObjectForKey("hitPoints") as Int
     }
     
+    // NSCoding persistence
+    
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.firstName, forKey: "firstName")
         aCoder.encodeObject(self.lastName, forKey: "lastName")
@@ -65,6 +69,8 @@ class Character: NSObject, NSCoding {
         aCoder.encodeObject(self.level, forKey: "level")
         aCoder.encodeObject(self.hitPoints, forKey: "hitPoints")
     }
+    
+    // Character model methods
     
     func returnFullName () -> String {
         var fullName : String = self.firstName + " " + self.lastName

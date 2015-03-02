@@ -10,8 +10,16 @@ import UIKit
 
 class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    // Data-passing delegation
+    
     var delegate: updateListDelegate?
-
+    
+    @IBAction func saveButtonPressed(sender: AnyObject) {
+        delegate?.updateList(newChar)
+    }
+    
+    // Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +46,8 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
         // Dispose of any resources that can be recreated.
     }
     
+    // Outlets
+    
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var strengthDisplay: UILabel!
@@ -47,10 +57,11 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var wisdomDisplay: UILabel!
     @IBOutlet weak var charismaDisplay: UILabel!
     @IBOutlet weak var hitPointsDisplay: UILabel!
-    
     @IBOutlet weak var classPicker: UIPickerView!
     
     let pickerData = ["Fighter", "Barbarian", "Paladin", "Monk", "Cleric", "Druid", "Favored Soul", "Wizard", "Sorcerer", "Warlock", "Bard", "Rogue", "Ranger"]
+    
+    // Picker protocol code
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -67,7 +78,11 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
         newChar.characterClass = pickerData[row]
     }
     
+    // Placeholder character
+    
     var newChar = Character(firstName: "", lastName: "", strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0, characterClass: "Fighter", level: 1, hitPoints: 0)
+    
+    // Stat rolling functionality
     
     @IBAction func rollButtonPressed(sender: AnyObject){
         var thisCharStats = newChar.rollStats()
@@ -89,24 +104,12 @@ class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.hitPointsDisplay.text = String(newChar.hitPoints) + " HP"
     }
 
-    @IBAction func saveButtonPressed(sender: AnyObject) {
-        delegate?.updateList(newChar)
-    }
+    // Text input disappear upon completion
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
