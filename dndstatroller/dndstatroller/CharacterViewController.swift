@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterViewController: UIViewController, UINavigationControllerDelegate {
+class CharacterViewController: UIViewController {
     
     // Variables - placeholder character
     

@@ -8,14 +8,11 @@
 
 import UIKit
 
-class CreatorViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class CreatorViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // Data-passing delegation
-    
-    var delegate: updateListDelegate?
-    
+    // Data passing
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        delegate?.updateList(newChar)
+        characterHandler.updateList(newChar)
     }
     
     // Life cycle

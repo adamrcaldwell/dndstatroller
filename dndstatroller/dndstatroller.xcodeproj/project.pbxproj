@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A35D807E1AA0D70500F49BCF /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35D807D1AA0D70500F49BCF /* Protocol.swift */; };
+		A301D9BE1B07B23800D98C84 /* CharacterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D9BD1B07B23800D98C84 /* CharacterHandler.swift */; };
 		A3CCA5961A9FD00900B1043A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCA5951A9FD00900B1043A /* AppDelegate.swift */; };
 		A3CCA5981A9FD00900B1043A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCA5971A9FD00900B1043A /* ListViewController.swift */; };
 		A3CCA59B1A9FD00900B1043A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3CCA5991A9FD00900B1043A /* Main.storyboard */; };
@@ -31,7 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A35D807D1AA0D70500F49BCF /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		A301D9BD1B07B23800D98C84 /* CharacterHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterHandler.swift; sourceTree = "<group>"; };
 		A3CCA5901A9FD00900B1043A /* dndstatroller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dndstatroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3CCA5941A9FD00900B1043A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3CCA5951A9FD00900B1043A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 				A3CCA5B51A9FD68300B1043A /* Character.swift */,
 				A3CCA5951A9FD00900B1043A /* AppDelegate.swift */,
 				A3CCA5971A9FD00900B1043A /* ListViewController.swift */,
+				A301D9BD1B07B23800D98C84 /* CharacterHandler.swift */,
 				A3CCA5B91A9FE24D00B1043A /* ListTableViewCell.swift */,
 				A3CCA5991A9FD00900B1043A /* Main.storyboard */,
 				A3CCA59C1A9FD00900B1043A /* Images.xcassets */,
@@ -97,7 +98,6 @@
 				A3CCA5931A9FD00900B1043A /* Supporting Files */,
 				A3CCA5BB1A9FF3A200B1043A /* CharacterViewController.swift */,
 				A3CCA5BD1A9FF4E000B1043A /* CreatorViewController.swift */,
-				A35D807D1AA0D70500F49BCF /* Protocol.swift */,
 			);
 			path = dndstatroller;
 			sourceTree = "<group>";
@@ -230,7 +230,7 @@
 				A3CCA5B61A9FD68300B1043A /* Character.swift in Sources */,
 				A3CCA5BE1A9FF4E000B1043A /* CreatorViewController.swift in Sources */,
 				A3CCA5BC1A9FF3A200B1043A /* CharacterViewController.swift in Sources */,
-				A35D807E1AA0D70500F49BCF /* Protocol.swift in Sources */,
+				A301D9BE1B07B23800D98C84 /* CharacterHandler.swift in Sources */,
 				A3CCA5BA1A9FE24D00B1043A /* ListTableViewCell.swift in Sources */,
 				A3CCA5981A9FD00900B1043A /* ListViewController.swift in Sources */,
 				A3CCA5961A9FD00900B1043A /* AppDelegate.swift in Sources */,

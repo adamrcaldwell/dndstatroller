@@ -8,17 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, updateListDelegate {
-
-    // Variables
-    
-    var characterList = [Character]()
-    
-    // Delegation
-    
-    func updateList(value: Character) {
-        characterList.append(value)
-    }
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // Life cycle
     
@@ -29,7 +19,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         
         if let peopleFromArchive = self.loadFromArchive() as [Character]? {
-            self.characterList = peopleFromArchive
+            characterHandler.characterList = peopleFromArchive
         } else {
             self.saveToArchive()
         }
@@ -64,7 +54,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func saveToArchive() {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        NSKeyedArchiver.archiveRootObject(self.characterList, toFile: documentsPath + "/archive")
+        NSKeyedArchiver.archiveRootObject(characterHandler.characterList, toFile: documentsPath + "/archive")
     }
     
     // Outlets
@@ -74,12 +64,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Protocol adherence
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.characterList.count
+        return characterHandler.characterList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BUILD_CELL", forIndexPath: indexPath) as ListTableViewCell
-        var charToDisplay = self.characterList[indexPath.row]
+        var charToDisplay = characterHandler.characterList[indexPath.row]
         cell.characterLabel.text = charToDisplay.returnFullName()
         cell.characterLevelAndClassLabel.text = charToDisplay.returnLevelAndClass()
         return cell
@@ -91,14 +81,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "SHOW_CHARACTER" {
             let characterViewController = segue.destinationViewController as CharacterViewController
             let selectedIndexPath = self.tableView.indexPathForSelectedRow()
-            var charToPass = self.characterList[selectedIndexPath!.row]
+            var charToPass = characterHandler.characterList[selectedIndexPath!.row]
             characterViewController.selectedChar = charToPass
         }
         
         if segue.identifier == "SHOW_CREATOR" {
             let creatorViewController = segue.destinationViewController as CreatorViewController
-            
-            creatorViewController.delegate = self
         }
     }
 
